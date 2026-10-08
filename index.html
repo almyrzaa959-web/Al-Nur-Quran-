@@ -2,181 +2,229 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>مصحف النور</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-    font-family:"Amiri","Traditional Arabic",serif;
-    background:#07152f;
-    color:#fff;
-    min-height:100vh;
+font-family:"Amiri","Traditional Arabic",serif;
+background:#07152f;
+color:#fff;
+min-height:100vh;
 }
 
 .app{
-    max-width:500px;
-    margin:auto;
-    min-height:100vh;
-    background:linear-gradient(180deg,#102b58,#07152f);
-    position:relative;
-    overflow:hidden;
+max-width:520px;
+margin:auto;
+min-height:100vh;
+background:
+radial-gradient(circle at 50% 0%,#284b82 0,#102b58 35%,#07152f 75%);
+overflow:hidden;
 }
 
-/* الرأس */
-.header{
-    padding:22px 18px 15px;
-    text-align:center;
-    border-bottom:1px solid rgba(212,175,55,.45);
+header{
+text-align:center;
+padding:25px 15px 18px;
+border-bottom:1px solid #b89435;
+}
+
+.crown{
+font-size:32px;
+color:#e8c766;
 }
 
 .logo{
-    font-size:34px;
-    color:#e8c766;
-    text-shadow:0 0 15px rgba(232,199,102,.45);
+font-size:36px;
+font-weight:bold;
+color:#f0d477;
+text-shadow:0 0 18px #a98224;
 }
 
-.subtitle{
-    margin-top:4px;
-    color:#ddd;
-    font-size:15px;
+.sub{
+color:#ddd;
+font-size:15px;
+margin-top:4px;
 }
 
-/* التاريخ */
 .dates{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    padding:15px;
-}
-
-.date-box{
-    padding:13px 8px;
-    text-align:center;
-    border:1px solid rgba(218,180,65,.55);
-    border-radius:15px;
-    background:rgba(255,255,255,.06);
-}
-
-.date-title{
-    color:#e8c766;
-    font-size:14px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:15px;
 }
 
 .date{
-    margin-top:5px;
-    font-size:17px;
+background:rgba(255,255,255,.07);
+border:1px solid #9e7c2d;
+border-radius:18px;
+padding:13px;
+text-align:center;
 }
 
-/* المواقيت */
+.date b{
+display:block;
+color:#e9c968;
+font-size:14px;
+margin-bottom:5px;
+}
+
 .prayer{
-    margin:0 15px 18px;
-    padding:17px;
-    border-radius:20px;
-    border:1px solid rgba(218,180,65,.5);
-    background:linear-gradient(135deg,
-        rgba(255,255,255,.09),
-        rgba(218,180,65,.04));
+margin:0 15px 18px;
+padding:16px;
+border:1px solid #9e7c2d;
+border-radius:20px;
+background:rgba(255,255,255,.06);
 }
 
-.prayer-title{
-    color:#e8c766;
-    text-align:center;
-    font-size:19px;
-    margin-bottom:13px;
+.prayer h2{
+text-align:center;
+color:#efd477;
+font-size:20px;
+margin-bottom:12px;
 }
 
-.prayer-times{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:5px;
-    text-align:center;
+.times{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+text-align:center;
+gap:4px;
+font-size:12px;
 }
 
-.prayer-times div{
-    font-size:12px;
+.times strong{
+display:block;
+color:#fff;
+font-size:14px;
+margin-top:5px;
 }
 
-.prayer-times strong{
-    display:block;
-    color:#fff;
-    font-size:14px;
-    margin-top:5px;
-}
-
-/* البطاقات */
-.section-title{
-    color:#e8c766;
-    font-size:20px;
-    padding:0 18px 12px;
+.title{
+color:#efd477;
+font-size:21px;
+padding:0 17px 12px;
 }
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    padding:0 15px 25px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:11px;
+padding:0 15px 20px;
 }
 
 .card{
-    min-height:105px;
-    border-radius:20px;
-    border:1px solid rgba(218,180,65,.45);
-    background:rgba(255,255,255,.055);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    transition:.25s;
+height:108px;
+border:1px solid #9e7c2d;
+border-radius:20px;
+background:linear-gradient(145deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.035));
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:.2s;
 }
 
-.card:active{
-    transform:scale(.95);
-}
+.card:active{transform:scale(.94)}
 
 .icon{
-    font-size:34px;
-    margin-bottom:8px;
-    filter:drop-shadow(0 0 7px rgba(232,199,102,.35));
+font-size:34px;
+margin-bottom:7px;
+filter:drop-shadow(0 0 8px #c39b35);
 }
 
-.card span{
-    color:#f2f2f2;
-    font-size:15px;
+.card span{font-size:15px}
+
+.page{
+display:none;
+padding:20px 15px 90px;
+min-height:600px;
 }
 
-/* شريط الأسفل */
+.page.active{display:block}
+
+.page h1{
+text-align:center;
+color:#efd477;
+font-size:28px;
+margin-bottom:18px;
+}
+
+.back{
+border:1px solid #9e7c2d;
+background:rgba(255,255,255,.06);
+color:#fff;
+border-radius:14px;
+padding:9px 18px;
+margin-bottom:20px;
+font-family:inherit;
+}
+
+.surah{
+background:rgba(255,255,255,.06);
+border:1px solid #806526;
+border-radius:15px;
+padding:14px;
+margin-bottom:9px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.surah span:first-child{
+color:#efd477;
+font-size:20px;
+}
+
+.dua{
+background:rgba(255,255,255,.06);
+border:1px solid #806526;
+border-radius:18px;
+padding:18px;
+line-height:2;
+margin-bottom:12px;
+font-size:17px;
+}
+
 .bottom{
-    position:sticky;
-    bottom:0;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    background:rgba(4,12,30,.96);
-    border-top:1px solid rgba(218,180,65,.45);
-    padding:9px 5px;
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:min(520px,100%);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+background:rgba(5,13,31,.97);
+border-top:1px solid #9e7c2d;
+padding:8px 4px;
+z-index:20;
 }
 
-.bottom div{
-    text-align:center;
-    font-size:12px;
-    color:#ddd;
+.bottom button{
+border:0;
+background:none;
+color:#ddd;
+font-family:inherit;
+font-size:12px;
 }
 
-.bottom .active{
-    color:#e8c766;
+.bottom button.active{color:#efd477}
+
+.bottom i{
+display:block;
+font-style:normal;
+font-size:23px;
+margin-bottom:2px;
 }
 
-.bottom-icon{
-    display:block;
-    font-size:23px;
-    margin-bottom:3px;
+footer{
+text-align:center;
+padding:20px;
+color:#aaa;
+font-size:13px;
 }
 </style>
 </head>
@@ -185,117 +233,233 @@ body{
 
 <div class="app">
 
-    <header class="header">
-        <div class="logo">مُصْحَفُ النُّور</div>
-        <div class="subtitle">القرآن الكريم ورفيق المسلم</div>
-    </header>
+<header>
+<div class="crown">♛</div>
+<div class="logo">مُصْحَفُ النُّور</div>
+<div class="sub">القرآن الكريم ورفيق المسلم</div>
+</header>
 
-    <section class="dates">
+<!-- الرئيسية -->
+<section id="home" class="page active">
 
-        <div class="date-box">
-            <div class="date-title">التاريخ الهجري</div>
-            <div class="date">١٤٤٨ هـ</div>
-        </div>
+<div class="dates">
+<div class="date">
+<b>التاريخ الهجري</b>
+١٤٤٨ هـ
+</div>
 
-        <div class="date-box">
-            <div class="date-title">التاريخ الميلادي</div>
-            <div class="date">٢٠٢٦ م</div>
-        </div>
+<div class="date">
+<b>التاريخ الميلادي</b>
+٢٠٢٦ م
+</div>
+</div>
 
-    </section>
+<div class="prayer">
+<h2>🕌 مواقيت الصلاة</h2>
 
-    <section class="prayer">
+<div class="times">
+<div>الفجر<strong>04:45</strong></div>
+<div>الظهر<strong>12:00</strong></div>
+<div>العصر<strong>15:25</strong></div>
+<div>المغرب<strong>18:05</strong></div>
+<div>العشاء<strong>19:25</strong></div>
+</div>
+</div>
 
-        <div class="prayer-title">🕌 مواقيت الصلاة</div>
+<div class="title">خدمات مصحف النور</div>
 
-        <div class="prayer-times">
-            <div>الفجر<strong>04:45</strong></div>
-            <div>الظهر<strong>12:00</strong></div>
-            <div>العصر<strong>15:25</strong></div>
-            <div>المغرب<strong>18:05</strong></div>
-            <div>العشاء<strong>19:25</strong></div>
-        </div>
+<div class="grid">
 
-    </section>
+<div class="card" onclick="openPage('quran')">
+<div class="icon">📖</div>
+<span>القرآن الكريم</span>
+</div>
 
-    <div class="section-title">
-        خدمات مصحف النور
-    </div>
+<div class="card" onclick="openPage('surah')">
+<div class="icon">🕋</div>
+<span>السور ١١٤</span>
+</div>
 
-    <section class="grid">
+<div class="card">
+<div class="icon">🔎</div>
+<span>البحث</span>
+</div>
 
-        <div class="card">
-            <div class="icon">📖</div>
-            <span>القرآن الكريم</span>
-        </div>
+<div class="card">
+<div class="icon">🎙️</div>
+<span>التلاوة</span>
+</div>
 
-        <div class="card">
-            <div class="icon">🕋</div>
-            <span>السور</span>
-        </div>
+<div class="card" onclick="openPage('dua')">
+<div class="icon">🤲</div>
+<span>الأدعية</span>
+</div>
 
-        <div class="card">
-            <div class="icon">🔎</div>
-            <span>البحث</span>
-        </div>
+<div class="card">
+<div class="icon">🕌</div>
+<span>الزيارات</span>
+</div>
 
-        <div class="card">
-            <div class="icon">🎙️</div>
-            <span>التلاوة</span>
-        </div>
+<div class="card">
+<div class="icon">🧭</div>
+<span>البوصلة</span>
+</div>
 
-        <div class="card">
-            <div class="icon">🤲</div>
-            <span>الأدعية</span>
-        </div>
+<div class="card">
+<div class="icon">📅</div>
+<span>التقويم</span>
+</div>
 
-        <div class="card">
-            <div class="icon">🕌</div>
-            <span>الزيارات</span>
-        </div>
-
-        <div class="card">
-            <div class="icon">🧭</div>
-            <span>البوصلة</span>
-        </div>
-
-        <div class="card">
-            <div class="icon">📅</div>
-            <span>التقويم</span>
-        </div>
-
-        <div class="card">
-            <div class="icon">🔖</div>
-            <span>المحفوظات</span>
-        </div>
-
-    </section>
-
-    <nav class="bottom">
-
-        <div class="active">
-            <span class="bottom-icon">⌂</span>
-            الرئيسية
-        </div>
-
-        <div>
-            <span class="bottom-icon">📖</span>
-            القرآن
-        </div>
-
-        <div>
-            <span class="bottom-icon">🤲</span>
-            الأدعية
-        </div>
-
-        <div>
-            <span class="bottom-icon">⚙️</span>
-            الإعدادات
-        </div>
-
-    </nav>
+<div class="card">
+<div class="icon">🔖</div>
+<span>المحفوظات</span>
+</div>
 
 </div>
+
+<footer>
+مُصْحَفُ النُّور © ٢٠٢٦
+</footer>
+
+</section>
+
+
+<!-- القرآن -->
+<section id="quran" class="page">
+
+<button class="back" onclick="openPage('home')">← الرئيسية</button>
+
+<h1>📖 القرآن الكريم</h1>
+
+<div class="dua">
+بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+<br><br>
+هنا ستكون صفحات القرآن الكريم بتنسيق قريب من صفحات المصحف، مع الخط القرآني والزخارف وأرقام الآيات.
+</div>
+
+</section>
+
+
+<!-- السور -->
+<section id="surah" class="page">
+
+<button class="back" onclick="openPage('home')">← الرئيسية</button>
+
+<h1>سُوَرُ القرآن الكريم</h1>
+
+<div id="surahList"></div>
+
+</section>
+
+
+<!-- الأدعية -->
+<section id="dua" class="page">
+
+<button class="back" onclick="openPage('home')">← الرئيسية</button>
+
+<h1>🤲 الأدعية</h1>
+
+<div class="dua">
+رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً،
+وَفِي الْآخِرَةِ حَسَنَةً،
+وَقِنَا عَذَابَ النَّارِ.
+</div>
+
+<div class="dua">
+رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ،
+وَارْحَمْنِي وَارْحَمْهُمَا.
+</div>
+
+</section>
+
+
+<!-- شريط التنقل -->
+<nav class="bottom">
+
+<button class="active" onclick="openPage('home')">
+<i>⌂</i>
+الرئيسية
+</button>
+
+<button onclick="openPage('quran')">
+<i>📖</i>
+القرآن
+</button>
+
+<button onclick="openPage('dua')">
+<i>🤲</i>
+الأدعية
+</button>
+
+<button>
+<i>⚙️</i>
+الإعدادات
+</button>
+
+</nav>
+
+</div>
+
+
+<script>
+
+function openPage(id){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+window.scrollTo(0,0);
+}
+
+
+/* أسماء السور الـ114 */
+
+const surahs=[
+"الفاتحة","البقرة","آل عمران","النساء","المائدة",
+"الأنعام","الأعراف","الأنفال","التوبة","يونس",
+"هود","يوسف","الرعد","إبراهيم","الحجر",
+"النحل","الإسراء","الكهف","مريم","طه",
+"الأنبياء","الحج","المؤمنون","النور","الفرقان",
+"الشعراء","النمل","القصص","العنكبوت","الروم",
+"لقمان","السجدة","الأحزاب","سبأ","فاطر",
+"يس","الصافات","ص","الزمر","غافر",
+"فصلت","الشورى","الزخرف","الدخان","الجاثية",
+"الأحقاف","محمد","الفتح","الحجرات","ق",
+"الذاريات","الطور","النجم","القمر","الرحمن",
+"الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+"الصف","الجمعة","المنافقون","التغابن","الطلاق",
+"التحريم","الملك","القلم","الحاقة","المعارج",
+"نوح","الجن","المزمل","المدثر","القيامة",
+"الإنسان","المرسلات","النبأ","النازعات","عبس",
+"التكوير","الانفطار","المطففين","الانشقاق","البروج",
+"الطارق","الأعلى","الغاشية","الفجر","البلد",
+"الشمس","الليل","الضحى","الشرح","التين",
+"العلق","القدر","البينة","الزلزلة","العاديات",
+"القارعة","التكاثر","العصر","الهمزة","الفيل",
+"قريش","الماعون","الكوثر","الكافرون","النصر",
+"المسد","الإخلاص","الفلق","الناس"
+];
+
+const list=document.getElementById("surahList");
+
+surahs.forEach((name,index)=>{
+
+const item=document.createElement("div");
+
+item.className="surah";
+
+item.innerHTML=
+"<span>"+(index+1)+" — "+name+"</span>"+
+"<span>۞</span>";
+
+list.appendChild(item);
+
+});
+
+</script>
 
 </body>
 </html>
