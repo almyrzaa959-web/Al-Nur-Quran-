@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>مُصْحَفُ النُّور</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --gold:#d9b45b;
+    --gold2:#f3dc8b;
+    --deep:#050a22;
+    --night:#081342;
+    --paper:#f8efd6;
+    --ink:#342716;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:"Cairo",sans-serif;
+    background:#030719;
+    color:white;
+}
+
+/* البيئة الرئيسية */
+#app{
+    position:relative;
+    width:100%;
+    height:100dvh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 25%,rgba(42,72,150,.35),transparent 35%),
+        linear-gradient(180deg,#030719 0%,#07143c 52%,#020615 100%);
+}
+
+/* وهج السماء */
+.sky-glow{
+    position:absolute;
+    inset:-30%;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(70,105,205,.18),transparent 28%),
+        radial-gradient(circle at 20% 60%,rgba(30,65,145,.15),transparent 30%),
+        radial-gradient(circle at 80% 55%,rgba(25,60,150,.12),transparent 30%);
+    animation:skyMove 14s ease-in-out infinite alternate;
+}
+
+@keyframes skyMove{
+    from{transform:scale(1) translateY(0)}
+    to{transform:scale(1.08) translateY(-15px)}
+}
+
+/* النجوم */
+.stars,
+.stars2{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.stars{
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(235,210,130,.7) 1px,transparent 1.5px);
+    background-size:72px 72px,113px 113px;
+    background-position:10px 15px,40px 70px;
+    opacity:.65;
+    animation:starsMove 30s linear infinite;
+}
+
+.stars2{
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 1.7px);
+    background-size:157px 157px;
+    opacity:.35;
+    animation:starsMove 50s linear infinite reverse;
+}
+
+@keyframes starsMove{
+    to{transform:translateY(70px)}
+}
+
+/* القمر */
+.moon{
+    position:absolute;
+    top:7%;
+    left:50%;
+    transform:translateX(-50%);
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 35% 30%,#fff9d7,#e9d88d 58%,#bda75d);
+    box-shadow:
+        0 0 25px rgba(245,220,135,.65),
+        0 0 90px rgba(240,210,120,.22);
+}
+
+.moon:after{
+    content:"";
+    position:absolute;
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    background:#07143c;
+    left:31px;
+    top:-11px;
+}
+
+/* هلال زخرفي */
+.moon-ring{
+    position:absolute;
+    width:145px;
+    height:145px;
+    top:5.3%;
+    left:50%;
+    transform:translateX(-50%);
+    border:1px solid rgba(221,186,91,.3);
+    border-radius:50%;
+}
+
+/* سحب */
+.cloud{
+    position:absolute;
+    width:280px;
+    height:70px;
+    border-radius:50%;
+    background:rgba(80,104,165,.08);
+    filter:blur(14px);
+}
+
+.cloud1{
+    top:25%;
+    left:-70px;
+    animation:cloud1 35s linear infinite;
+}
+
+.cloud2{
+    top:42%;
+    right:-120px;
+    animation:cloud2 45s linear infinite;
+}
+
+@keyframes cloud1{
+    to{transform:translateX(calc(100vw + 400px))}
+}
+
+@keyframes cloud2{
+    to{transform:translateX(calc(-100vw - 400px))}
+}
+
+/* زخرفة جانبية */
+.ornament{
+    position:absolute;
+    inset:18px;
+    border:1px solid rgba(215,177,79,.16);
+    pointer-events:none;
+}
+
+.ornament:before,
+.ornament:after{
+    content:"✦";
+    position:absolute;
+    color:rgba(225,192,100,.45);
+    font-size:18px;
+}
+
+.ornament:before{
+    top:-12px;
+    right:20px;
+}
+
+.ornament:after{
+    bottom:-12px;
+    left:20px;
+}
+
+/* الهيدر */
+.top{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:92px;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-symbol{
+    width:48px;
+    height:48px;
+    border:1px solid rgba(224,190,95,.65);
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--gold2);
+    font-size:23px;
+    box-shadow:0 0 20px rgba(215,177,79,.12);
+}
+
+.brand-name{
+    font-family:"Amiri",serif;
+    font-size:25px;
+    color:#f5df98;
+}
+
+.brand-sub{
+    font-size:9px;
+    color:rgba(255,255,255,.55);
+    letter-spacing:2px;
+}
+
+.top-date{
+    text-align:left;
+    color:rgba(255,255,255,.7);
+    font-size:11px;
+    line-height:1.8;
+}
+
+.top-date strong{
+    color:#f0d37d;
+    font-size:13px;
+}
+
+/* المحتوى */
+main{
+    position:absolute;
+    inset:90px 0 78px;
+    z-index:5;
+    overflow:hidden;
+}
+
+.page{
+    position:absolute;
+    inset:0;
+    display:none;
+    animation:pageIn .55s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* الصفحة الرئيسية */
+.home{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding-bottom:10px;
+}
+
+/* العنوان */
+.welcome{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.welcome-small{
+    color:rgba(255,255,255,.55);
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+.welcome h1{
+    font-family:"Amiri",serif;
+    color:#f3dc8b;
+    font-size:34px;
+    text-shadow:0 0 20px rgba(224,190,95,.18);
+}
+
+.welcome p{
+    font-size:11px;
+    color:rgba(255,255,255,.65);
+}
+
+/* المصحف */
+.mushaf-stage{
+    position:relative;
+    width:min(92vw,650px);
+    height:min(47vh,330px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    perspective:1200px;
+}
+
+.mushaf-stage:before{
+    content:"";
+    position:absolute;
+    width:75%;
+    height:40px;
+    bottom:5px;
+    border-radius:50%;
+    background:rgba(0,0,0,.6);
+    filter:blur(18px);
+}
+
+.book{
+    position:relative;
+    width:min(88vw,570px);
+    height:min(42vh,300px);
+    display:flex;
+    transform:rotateX(2deg);
+    filter:drop-shadow(0 25px 22px rgba(0,0,0,.5));
+}
+
+.book-page{
+    position:relative;
+    width:50%;
+    height:100%;
+    background:
+        radial-gradient(circle at center,rgba(255,255,255,.7),transparent 60%),
+        linear-gradient(100deg,#e6d4a9,#faf2d9 35%,#efe1bb);
+    color:var(--ink);
+    overflow:hidden;
+}
+
+.book-page:first-child{
+    border-radius:5px 0 0 5px;
+    box-shadow:inset -14px 0 20px rgba(80,50,15,.13);
+}
+
+.book-page:last-child{
+    border-radius:0 5px 5px 0;
+    box-shadow:inset 14px 0 20px rgba(80,50,15,.13);
+}
+
+.book-page:before{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:1px solid #b79a58;
+    pointer-events:none;
+}
+
+.book-page:after{
+    content:"۞";
+    position:absolute;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#a88945;
+    font-size:18px;
+}
+
+.page-content{
+    position:absolute;
+    inset:30px 22px 20px;
+    text-align:center;
+    font-family:"Amiri",serif;
+}
+
+.surah-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#80652e;
+}
+
+.basmala{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.ayah{
+    font-size:14px;
+    line-height:2.05;
+}
+
+.ayah-num{
+    color:#96752d;
+    font-size:12px;
+}
+
+.page-number{
+    position:absolute;
+    bottom:7px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    color:#80652e;
+}
+
+/* فاصل المصحف */
+.book-spine{
+    position:absolute;
+    z-index:4;
+    width:13px;
+    height:96%;
+    left:50%;
+    top:2%;
+    transform:translateX(-50%);
+    background:linear-gradient(90deg,
+        rgba(80,53,20,.35),
+        rgba(255,255,255,.3),
+        rgba(90,57,18,.3));
+}
+
+/* معلومات تحت المصحف */
+.read-info{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    margin-top:5px;
+    color:rgba(255,255,255,.65);
+    font-size:10px;
+}
+
+.read-info span{
+    color:#e7ca76;
+}
+
+/* الأوامر السريعة */
+.quick{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:27px;
+    margin-top:17px;
+}
+
+.quick button{
+    background:none;
+    border:0;
+    color:rgba(255,255,255,.75);
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    transition:.3s;
+}
+
+.quick button:hover{
+    color:#f3dc8b;
+    transform:translateY(-4px);
+}
+
+.quick-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(218,182,87,.35);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:17px;
+    background:rgba(255,255,255,.025);
+}
+
+.quick small{
+    font-size:9px;
+}
+
+/* صفحة القرآن */
+.reader{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.reader-top{
+    width:100%;
+    height:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    color:rgba(255,255,255,.7);
+    font-size:11px;
+}
+
+.reader-top strong{
+    color:#f0d37d;
+}
+
+.reader-book{
+    flex:1;
+    width:min(94vw,760px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.reader .book{
+    width:min(94vw,700px);
+    height:min(66vh,500px);
+}
+
+.reader .ayah{
+    font-size:16px;
+    line-height:2.2;
+}
+
+.reader-bottom{
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+}
+
+.reader-bottom button{
+    background:none;
+    border:0;
+    color:#dfc574;
+    font-size:18px;
+}
+
+/* صفحة السور والأجزاء */
+.library{
+    height:100%;
+    overflow:auto;
+    padding:20px 24px 80px;
+}
+
+.library-title{
+    text-align:center;
+    font-family:"Amiri",serif;
+    font-size:31px;
+    color:#f1d781;
+    margin-bottom:8px;
+}
+
+.library-sub{
+    text-align:center;
+    color:rgba(255,255,255,.5);
+    font-size:10px;
+    margin-bottom:25px;
+}
+
+/* قائمة بدون مربعات */
+.list{
+    max-width:700px;
+    margin:auto;
+}
+
+.list-item{
+    min-height:58px;
+    border-bottom:1px solid rgba(217,180,91,.14);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 4px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.list-item:hover{
+    padding-right:14px;
+    padding-left:14px;
+    background:linear-gradient(90deg,transparent,rgba(217,180,91,.07),transparent);
+}
+
+.list-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.list-number{
+    width:34px;
+    height:34px;
+    border:1px solid rgba(217,180,91,.35);
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#dabb69;
+    font-size:11px;
+}
+
+.list-name{
+    font-family:"Amiri",serif;
+    font-size:18px;
+}
+
+.list-info{
+    color:rgba(255,255,255,.45);
+    font-size:9px;
+}
+
+/* صفحة الأدعية */
+.dua{
+    height:100%;
+    overflow:auto;
+    text-align:center;
+    padding:40px 25px 100px;
+}
+
+.dua h2{
+    font-family:"Amiri",serif;
+    color:#f2d980;
+    font-size:31px;
+}
+
+.dua-ornament{
+    color:#b7964c;
+    margin:15px;
+}
+
+.dua-text{
+    max-width:700px;
+    margin:auto;
+    font-family:"Amiri",serif;
+    font-size:24px;
+    line-height:2.3;
+    color:#f5ead0;
+}
+
+.dua-source{
+    color:rgba(255,255,255,.5);
+    font-size:11px;
+    margin-top:18px;
+}
+
+/* الشريط السفلي */
+.bottom{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:76px;
+    z-index:30;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:38px;
+    background:linear-gradient(
+        180deg,
+        transparent,
+        rgba(2,6,21,.55)
+    );
+    backdrop-filter:blur(8px);
+}
+
+.nav-btn{
+    background:none;
+    border:0;
+    color:rgba(255,255,255,.45);
+    min-width:55px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    transition:.3s;
+}
+
+.nav-btn .icon{
+    font-size:20px;
+}
+
+.nav-btn small{
+    font-size:8px;
+}
+
+.nav-btn.active,
+.nav-btn:hover{
+    color:#f0d27a;
+}
+
+.nav-btn.active .icon{
+    text-shadow:0 0 16px rgba(240,210,120,.55);
+}
+
+/* زر القائمة */
+.menu{
+    position:absolute;
+    top:85px;
+    right:20px;
+    z-index:100;
+    width:min(290px,80vw);
+    background:rgba(5,10,30,.94);
+    border:1px solid rgba(217,180,91,.3);
+    padding:18px;
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
+    transform:translateX(120%);
+    transition:.4s;
+    backdrop-filter:blur(15px);
+}
+
+.menu.open{
+    transform:translateX(0);
+}
+
+.menu-title{
+    color:#efd27b;
+    font-family:"Amiri",serif;
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.menu button{
+    display:block;
+    width:100%;
+    text-align:right;
+    background:none;
+    border:0;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    padding:13px 5px;
+    color:#ddd;
+    font-family:"Cairo",sans-serif;
+    cursor:pointer;
+}
+
+.menu button:hover{
+    color:#f1d57e;
+}
+
+.menu-toggle{
+    position:absolute;
+    left:22px;
+    top:23px;
+    z-index:50;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(217,180,91,.35);
+    border-radius:50%;
+    background:rgba(255,255,255,.025);
+    color:#efd27b;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* شاشات صغيرة */
+@media(max-width:600px){
+
+    .top{
+        height:78px;
+        padding:10px 17px;
+    }
+
+    .brand-symbol{
+        width:40px;
+        height:40px;
+        font-size:18px;
+    }
+
+    .brand-name{
+        font-size:21px;
+    }
+
+    .top-date{
+        font-size:8px;
+    }
+
+    main{
+        inset:78px 0 70px;
+    }
+
+    .moon{
+        width:75px;
+        height:75px;
+        top:8%;
+    }
+
+    .moon:after{
+        width:75px;
+        height:75px;
+        left:23px;
+        top:-8px;
+    }
+
+    .moon-ring{
+        width:105px;
+        height:105px;
+        top:6.5%;
+    }
+
+    .welcome{
+        margin-bottom:5px;
+    }
+
+    .welcome h1{
+        font-size:28px;
+    }
+
+    .welcome-small{
+        font-size:8px;
+    }
+
+    .mushaf-stage{
+        height:40vh;
+    }
+
+    .book{
+        width:94vw;
+        height:230px;
+    }
+
+    .page-content{
+        inset:27px 13px 15px;
+    }
+
+    .surah-title{
+        font-size:15px;
+    }
+
+    .basmala{
+        font-size:13px;
+    }
+
+    .ayah{
+        font-size:10px;
+        line-height:1.9;
+    }
+
+    .read-info{
+        gap:15px;
+        font-size:8px;
+    }
+
+    .quick{
+        gap:14px;
+        margin-top:10px;
+    }
+
+    .quick-icon{
+        width:36px;
+        height:36px;
+        font-size:14px;
+    }
+
+    .quick small{
+        font-size:7px;
+    }
+
+    .bottom{
+        gap:17px;
+        height:68px;
+    }
+
+    .nav-btn{
+        min-width:48px;
+    }
+
+    .nav-btn .icon{
+        font-size:17px;
+    }
+
+    .reader .book{
+        width:95vw;
+        height:55vh;
+    }
+
+    .reader .ayah{
+        font-size:11px;
+    }
+
+    .dua-text{
+        font-size:19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+    <div class="sky-glow"></div>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+
+    <div class="moon"></div>
+    <div class="moon-ring"></div>
+
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="ornament"></div>
+
+    <!-- الأعلى -->
+    <header class="top">
+
+        <div class="brand">
+            <div class="brand-symbol">۞</div>
+
+            <div>
+                <div class="brand-name">مُصْحَفُ النُّور</div>
+                <div class="brand-sub">QURAN • LIGHT • GUIDANCE</div>
+            </div>
+        </div>
+
+        <div class="top-date">
+            <strong id="gregorian"></strong>
+            <br>
+            <span id="hijri">التاريخ الهجري</span>
+        </div>
+
+    </header>
+
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- القائمة الجانبية -->
+    <aside class="menu" id="menu">
+
+        <div class="menu-title">مكتبة النور</div>
+
+        <button onclick="showPage('home')">
+            ☾ الرئيسية
+        </button>
+
+        <button onclick="showPage('quran')">
+            ۞ القرآن الكريم
+        </button>
+
+        <button onclick="showPage('surahs')">
+            ◈ سور القرآن
+        </button>
+
+        <button onclick="showPage('parts')">
+            ◇ أجزاء القرآن
+        </button>
+
+        <button onclick="showPage('duas')">
+            ✦ الأدعية
+        </button>
+
+        <button onclick="alert('البحث القرآني سيكون داخل المصحف.')">
+            ⌕ البحث في القرآن
+        </button>
+
+        <button onclick="alert('صفحة الإعدادات جاهزة للإضافة.')">
+            ⚙ الإعدادات
+        </button>
+
+    </aside>
+
+    <!-- المحتوى -->
+    <main>
+
+        <!-- الرئيسية -->
+        <section class="page active home" id="home">
+
+            <div class="welcome">
+                <div class="welcome-small">
+                    بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+                </div>
+
+                <h1>نُورٌ عَلَىٰ نُورٍ</h1>
+
+                <p>مصحفك الرقمي بروحٍ ملكية هادئة</p>
+            </div>
+
+            <div class="mushaf-stage">
+
+                <div class="book">
+
+                    <div class="book-page">
+
+                        <div class="page-content">
+
+                            <div class="surah-title">
+                                سُورَةُ الفَاتِحَة
+                            </div>
+
+                            <div class="basmala">
+                                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                            </div>
+
+                            <div class="ayah">
+                                الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+                                <span class="ayah-num">﴿١﴾</span>
+                                <br>
+
+                                الرَّحْمَٰنِ الرَّحِيمِ
+                                <span class="ayah-num">﴿٢﴾</span>
+                                <br>
+
+                                مَالِكِ يَوْمِ الدِّينِ
+                                <span class="ayah-num">﴿٣﴾</span>
+                            </div>
+
+                        </div>
+
+                        <div class="page-number">١</div>
+
+                    </div>
+
+                    <div class="book-page">
+
+                        <div class="page-content">
+
+                            <div class="surah-title">
+                                الفَاتِحَة
+                            </div>
+
+                            <div class="ayah">
+
+                                إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+                                <span class="ayah-num">﴿٥﴾</span>
+
+                                <br>
+
+                                اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+                                <span class="ayah-num">﴿٦﴾</span>
+
+                                <br>
+
+                                صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+                                <span class="ayah-num">﴿٧﴾</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="page-number">٢</div>
+
+                    </div>
+
+                    <div class="book-spine"></div>
+
+                </div>
+
+            </div>
+
+            <div class="read-info">
+
+                <span>الجزء ١</span>
+                <span>الحزب ١</span>
+                <span>صفحة ١</span>
+
+            </div>
+
+            <div class="quick">
+
+                <button onclick="showPage('quran')">
+                    <span class="quick-icon">۞</span>
+                    <small>القرآن</small>
+                </button>
+
+                <button onclick="showPage('surahs')">
+                    <span class="quick-icon">◈</span>
+                    <small>السور</small>
+                </button>
+
+                <button onclick="showPage('parts')">
+                    <span class="quick-icon">◇</span>
+                    <small>الأجزاء</small>
+                </button>
+
+                <button onclick="showPage('duas')">
+                    <span class="quick-icon">✦</span>
+                    <small>الأدعية</small>
+                </button>
+
+                <button onclick="alert('البحث القرآني')">
+                    <span class="quick-icon">⌕</span>
+                    <small>بحث</small>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- القرآن -->
+        <section class="page" id="quran">
+
+            <div class="reader">
+
+                <div class="reader-top">
+                    <span>الجزء <strong>١</strong></span>
+                    <span>الحزب <strong>١</strong></span>
+                    <span>الصفحة <strong>١</strong></span>
+                </div>
+
+                <div class="reader-book">
+
+                    <div class="book">
+
+                        <div class="book-page">
+
+                            <div class="page-content">
+
+                                <div class="surah-title">
+                                    سُورَةُ الفَاتِحَة
+                                </div>
+
+                                <div class="basmala">
+                                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                                </div>
+
+                                <div class="ayah">
+
+                                    الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+                                    ﴿١﴾
+
+                                    <br>
+
+                                    الرَّحْمَٰنِ الرَّحِيمِ
+                                    ﴿٢﴾
+
+                                    <br>
+
+                                    مَالِكِ يَوْمِ الدِّينِ
+                                    ﴿٣﴾
+
+                                    <br>
+
+                                    إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+                                    ﴿٥﴾
+
+                                </div>
+
+                            </div>
+
+                            <div class="page-number">١</div>
+
+                        </div>
+
+                        <div class="book-page">
+
+                            <div class="page-content">
+
+                                <div class="ayah">
+
+                                    اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+                                    ﴿٦﴾
+
+                                    <br><br>
+
+                                    صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ
+                                    غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ
+                                    وَلَا الضَّالِّينَ
+                                    ﴿٧﴾
+
+                                    <br><br>
+
+                                    آمِينَ
+
+                                </div>
+
+                            </div>
+
+                            <div class="page-number">٢</div>
+
+                        </div>
+
+                        <div class="book-spine"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="reader-bottom">
+
+                    <button onclick="alert('الصفحة السابقة')">‹</button>
+                    <button onclick="showPage('home')">⌂</button>
+                    <button onclick="alert('الصفحة التالية')">›</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- السور -->
+        <section class="page" id="surahs">
+
+            <div class="library">
+
+                <div class="library-title">
+                    سُوَرُ القُرآنِ الكَرِيم
+                </div>
+
+                <div class="library-sub">
+                    ١١٤ سُورَة — مِنَ الفَاتِحَةِ إِلَى النَّاس
+                </div>
+
+                <div class="list" id="surahList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- الأجزاء -->
+        <section class="page" id="parts">
+
+            <div class="library">
+
+                <div class="library-title">
+                    أَجْزَاءُ القُرآن
+                </div>
+
+                <div class="library-sub">
+                    ثلاثون جزءاً — ستون حزباً — أرباع القرآن
+                </div>
+
+                <div class="list" id="partsList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- الأدعية -->
+        <section class="page" id="duas">
+
+            <div class="dua">
+
+                <h2>أَدْعِيَةُ النُّور</h2>
+
+                <div class="dua-ornament">
+                    ✦ ───────── ۞ ───────── ✦
+                </div>
+
+                <div class="dua-text">
+
+                    رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً
+                    وَفِي الْآخِرَةِ حَسَنَةً
+                    وَقِنَا عَذَابَ النَّارِ
+
+                </div>
+
+                <div class="dua-source">
+                    سورة البقرة — الآية ٢٠١
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- التنقل السفلي -->
+    <nav class="bottom">
+
+        <button class="nav-btn active" data-page="home" onclick="showPage('home')">
+            <span class="icon">⌂</span>
+            <small>الرئيسية</small>
+        </button>
+
+        <button class="nav-btn" data-page="quran" onclick="showPage('quran')">
+            <span class="icon">۞</span>
+            <small>المصحف</small>
+        </button>
+
+        <button class="nav-btn" data-page="surahs" onclick="showPage('surahs')">
+            <span class="icon">◈</span>
+            <small>السور</small>
+        </button>
+
+        <button class="nav-btn" data-page="parts" onclick="showPage('parts')">
+            <span class="icon">◇</span>
+            <small>الأجزاء</small>
+        </button>
+
+        <button class="nav-btn" data-page="duas" onclick="showPage('duas')">
+            <span class="icon">✦</span>
+            <small>الأدعية</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script>
+
+/* التاريخ */
+const now = new Date();
+
+document.getElementById("gregorian").textContent =
+    now.toLocaleDateString("ar-IQ",{
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+    });
+
+
+/* التنقل */
+function showPage(id){
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    const page=document.getElementById(id);
+
+    if(page){
+        page.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+        btn.classList.remove("active");
+
+        if(btn.dataset.page===id){
+            btn.classList.add("active");
+        }
+    });
+
+    document.getElementById("menu").classList.remove("open");
+}
+
+
+/* القائمة */
+function toggleMenu(){
+
+    document
+        .getElementById("menu")
+        .classList.toggle("open");
+
+}
+
+
+/* أسماء السور */
+const surahs = [
+"الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام",
+"الأعراف","الأنفال","التوبة","يونس","هود","يوسف",
+"الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف",
+"مريم","طه","الأنبياء","الحج","المؤمنون","النور",
+"الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+"لقمان","السجدة","الأحزاب","سبأ","فاطر","يس",
+"الصافات","ص","الزمر","غافر","فصلت","الشورى",
+"الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح",
+"الحجرات","ق","الذاريات","الطور","النجم","القمر",
+"الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+"الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم",
+"الملك","القلم","الحاقة","المعارج","نوح","الجن",
+"المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ",
+"النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق",
+"البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+"الشمس","الليل","الضحى","الشرح","التين","العلق",
+"القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر",
+"العصر","الهمزة","الفيل","قريش","الماعون","الكوثر",
+"الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"
+];
+
+
+/* إنشاء قائمة السور */
+const surahList=document.getElementById("surahList");
+
+surahs.forEach((name,index)=>{
+
+    const item=document.createElement("div");
+
+    item.className="list-item";
+
+    item.innerHTML=`
+
+        <div class="list-right">
+
+            <div class="list-number">
+                ${index+1}
+            </div>
+
+            <div class="list-name">
+                ${name}
+            </div>
+
+        </div>
+
+        <div class="list-info">
+            سورة ${index<7 ? "مدنية" : "مكية"}
+        </div>
+
+    `;
+
+    item.onclick=()=>{
+
+        if(index===0){
+            showPage("quran");
+        }else{
+            alert(
+                "سورة "+name+
+                "\\n\\nسيتم ربط نصها الكامل وصفحاتها في مرحلة إدخال المصحف الكامل."
+            );
+        }
+
+    };
+
+    surahList.appendChild(item);
+
+});
+
+
+/* إنشاء الأجزاء */
+const partsList=document.getElementById("partsList");
+
+for(let i=1;i<=30;i++){
+
+    const item=document.createElement("div");
+
+    item.className="list-item";
+
+    item.innerHTML=`
+
+        <div class="list-right">
+
+            <div class="list-number">
+                ${i}
+            </div>
+
+            <div class="list-name">
+                الجزء ${arabicNumber(i)}
+            </div>
+
+        </div>
+
+        <div class="list-info">
+            حزبان • أربعة أرباع
+        </div>
+
+    `;
+
+    item.onclick=()=>{
+
+        if(i===1){
+            showPage("quran");
+        }else{
+            alert(
+                "الجزء "+arabicNumber(i)+
+                "\\n\\nسيتم ربط صفحات هذا الجزء بالمصحف الكامل."
+            );
+        }
+
+    };
+
+    partsList.appendChild(item);
+
+}
+
+
+/* الأرقام العربية */
+function arabicNumber(number){
+
+    const nums=[
+        "٠","١","٢","٣","٤","٥","٦","٧","٨","٩"
+    ];
+
+    return String(number)
+        .split("")
+        .map(n=>nums[n])
+        .join("");
+
+}
+
+</script>
+
+</body>
+  </html>
