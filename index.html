@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مصحف النور</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Amiri","Traditional Arabic",serif;
+    background:#07152f;
+    color:#fff;
+    min-height:100vh;
+}
+
+.app{
+    max-width:500px;
+    margin:auto;
+    min-height:100vh;
+    background:linear-gradient(180deg,#102b58,#07152f);
+    position:relative;
+    overflow:hidden;
+}
+
+/* الرأس */
+.header{
+    padding:22px 18px 15px;
+    text-align:center;
+    border-bottom:1px solid rgba(212,175,55,.45);
+}
+
+.logo{
+    font-size:34px;
+    color:#e8c766;
+    text-shadow:0 0 15px rgba(232,199,102,.45);
+}
+
+.subtitle{
+    margin-top:4px;
+    color:#ddd;
+    font-size:15px;
+}
+
+/* التاريخ */
+.dates{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:15px;
+}
+
+.date-box{
+    padding:13px 8px;
+    text-align:center;
+    border:1px solid rgba(218,180,65,.55);
+    border-radius:15px;
+    background:rgba(255,255,255,.06);
+}
+
+.date-title{
+    color:#e8c766;
+    font-size:14px;
+}
+
+.date{
+    margin-top:5px;
+    font-size:17px;
+}
+
+/* المواقيت */
+.prayer{
+    margin:0 15px 18px;
+    padding:17px;
+    border-radius:20px;
+    border:1px solid rgba(218,180,65,.5);
+    background:linear-gradient(135deg,
+        rgba(255,255,255,.09),
+        rgba(218,180,65,.04));
+}
+
+.prayer-title{
+    color:#e8c766;
+    text-align:center;
+    font-size:19px;
+    margin-bottom:13px;
+}
+
+.prayer-times{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:5px;
+    text-align:center;
+}
+
+.prayer-times div{
+    font-size:12px;
+}
+
+.prayer-times strong{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    margin-top:5px;
+}
+
+/* البطاقات */
+.section-title{
+    color:#e8c766;
+    font-size:20px;
+    padding:0 18px 12px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:0 15px 25px;
+}
+
+.card{
+    min-height:105px;
+    border-radius:20px;
+    border:1px solid rgba(218,180,65,.45);
+    background:rgba(255,255,255,.055);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:.25s;
+}
+
+.card:active{
+    transform:scale(.95);
+}
+
+.icon{
+    font-size:34px;
+    margin-bottom:8px;
+    filter:drop-shadow(0 0 7px rgba(232,199,102,.35));
+}
+
+.card span{
+    color:#f2f2f2;
+    font-size:15px;
+}
+
+/* شريط الأسفل */
+.bottom{
+    position:sticky;
+    bottom:0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:rgba(4,12,30,.96);
+    border-top:1px solid rgba(218,180,65,.45);
+    padding:9px 5px;
+}
+
+.bottom div{
+    text-align:center;
+    font-size:12px;
+    color:#ddd;
+}
+
+.bottom .active{
+    color:#e8c766;
+}
+
+.bottom-icon{
+    display:block;
+    font-size:23px;
+    margin-bottom:3px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div class="logo">مُصْحَفُ النُّور</div>
+        <div class="subtitle">القرآن الكريم ورفيق المسلم</div>
+    </header>
+
+    <section class="dates">
+
+        <div class="date-box">
+            <div class="date-title">التاريخ الهجري</div>
+            <div class="date">١٤٤٨ هـ</div>
+        </div>
+
+        <div class="date-box">
+            <div class="date-title">التاريخ الميلادي</div>
+            <div class="date">٢٠٢٦ م</div>
+        </div>
+
+    </section>
+
+    <section class="prayer">
+
+        <div class="prayer-title">🕌 مواقيت الصلاة</div>
+
+        <div class="prayer-times">
+            <div>الفجر<strong>04:45</strong></div>
+            <div>الظهر<strong>12:00</strong></div>
+            <div>العصر<strong>15:25</strong></div>
+            <div>المغرب<strong>18:05</strong></div>
+            <div>العشاء<strong>19:25</strong></div>
+        </div>
+
+    </section>
+
+    <div class="section-title">
+        خدمات مصحف النور
+    </div>
+
+    <section class="grid">
+
+        <div class="card">
+            <div class="icon">📖</div>
+            <span>القرآن الكريم</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🕋</div>
+            <span>السور</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔎</div>
+            <span>البحث</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎙️</div>
+            <span>التلاوة</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🤲</div>
+            <span>الأدعية</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🕌</div>
+            <span>الزيارات</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧭</div>
+            <span>البوصلة</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">📅</div>
+            <span>التقويم</span>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔖</div>
+            <span>المحفوظات</span>
+        </div>
+
+    </section>
+
+    <nav class="bottom">
+
+        <div class="active">
+            <span class="bottom-icon">⌂</span>
+            الرئيسية
+        </div>
+
+        <div>
+            <span class="bottom-icon">📖</span>
+            القرآن
+        </div>
+
+        <div>
+            <span class="bottom-icon">🤲</span>
+            الأدعية
+        </div>
+
+        <div>
+            <span class="bottom-icon">⚙️</span>
+            الإعدادات
+        </div>
+
+    </nav>
+
+</div>
+
+</body>
+</html>
